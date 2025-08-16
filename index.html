@@ -1,8 +1,8 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>WANDERING OLDMAN AIS</title>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no">
-    <!-- Removed clap.css as it's not a standard public CDN and may not be available -->
     <!-- Clappr player library -->
     <script src="//cdn.jsdelivr.net/npm/@clappr/player@0.4.0/dist/clappr.min.js"></script>
     <!-- Mux.js is generally for segment parsing, useful for some HLS. Keeping it. -->
@@ -18,46 +18,123 @@
     <style>
         body {
             background-color: #000000;
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* Prevent body scrollbars */
+        }
+        #player-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #player {
+            width: 100%;
+            height: 100%;
+        }
+        #play-button {
+            position: absolute;
+            z-index: 10;
+            padding: 20px 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #play-button:hover {
+            background-color: rgba(255, 255, 255, 0.4);
+            transform: scale(1.05);
+        }
+        #play-button:active {
+            transform: scale(0.95);
+        }
+        .info-text {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #ff0;
+            z-index: 5; /* Ensure text is below the button */
+        }
+        .center-text {
+            position: absolute;
+            bottom: 5px;
+            width: 100%;
+            text-align: center;
+            z-index: 5; /* Ensure text is below the button */
+        }
+        .center-text ins {
+            color: #fff;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <div id="player"></div>
+    <div id="player-container">
+        <div id="play-button">▶ เล่น</div>
+        <div id="player"></div>
+    </div>
     <script>
-        var player = new Clappr.Player({
-            // REPLACE THIS URL with your M3U8 link
-            source: 'https://ch3-33-web.cdn.byteark.com/live/playlist_720p/index.m3u8',
-            // Correct mimeType for HLS
-            mimeType: 'application/x-mpegurl',
-            height: '100%',
-            width: '100%',
-            autoPlay: true,
-            // Updated plugins list for HLS
-            plugins: [
-                LevelSelector,
-                Clappr.MediaControl,
-                ClapprChromecastPlugin,
-                ClapprPip,
-                ClapprPlaybackRatePlugin
-            ],
-            events: {
-                onReady: function() {
-                    var plugin = this.getPlugin('click_to_pause');
-                    if (plugin) {
-                        plugin.disable();
-                    }
-                },
-            },
-            chromecast: {
-                // Correct content type for HLS in Chromecast
-                contentType: 'video/m3u8',
-            },
-            parentId: '#player'
+        document.addEventListener('DOMContentLoaded', function() {
+            var player;
+            var playerContainer = document.getElementById('player-container');
+            var playButton = document.getElementById('play-button');
+            function initializePlayer() {
+                player = new Clappr.Player({
+                    // REPLACE THIS URL with your M3U8 link
+                    source: 'https://ch3-33-web.cdn.byteark.com/live/playlist_720p/index.m3u8',
+                    // Correct mimeType for HLS
+                    mimeType: 'application/x-mpegurl',
+                    height: '100%',
+                    width: '100%',
+                    autoPlay: false, // Set to false to wait for the button click
+                    plugins: [
+                        LevelSelector,
+                        Clappr.MediaControl,
+                        ClapprChromecastPlugin,
+                        ClapprPip,
+                        ClapprPlaybackRatePlugin
+                    ],
+                    events: {
+                        onReady: function() {
+                            var plugin = this.getPlugin('click_to_pause');
+                            if (plugin) {
+                                plugin.disable();
+                            }
+                        },
+                    },
+                    chromecast: {
+                        // Correct content type for HLS in Chromecast
+                        contentType: 'video/m3u8',
+                    },
+                    parentId: '#player'
+                });
+            }
+            // Initially show the button and hide the player
+            playButton.style.display = 'flex';
+            initializePlayer();
+            
+            playButton.addEventListener('click', function() {
+                playButton.style.display = 'none';
+                player.play();
+            });
         });
     </script>
-    <span style='position:absolute;bottom:10px;right:20px;font-size: 15px; font-weight: bold;color: #ff0;'><em>แฟมิลี่ทีวี</em></span>
+    <span class="info-text"><em>แฟมิลี่ทีวี</em></span>
     <center>
-        <p><ins>แฟมิลี่ทีวี</ins></p>
+        <p class="center-text"><ins>แฟมิลี่ทีวี</ins></p>
     </center>
 </body>
 </html>
