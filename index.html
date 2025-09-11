@@ -18,6 +18,7 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
+            font-family: Arial, sans-serif;
         }
         #player {
             border-radius: 1rem;
@@ -30,40 +31,70 @@
         .clappr-player-skin {
             color: #fff;
         }
+        
         .clappr-core-media-control-panel {
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
             border-top: none;
+            height: 50px;
+            transition: all 0.3s ease;
         }
+
+        .clappr-core-media-control-panel:hover {
+            height: 60px;
+        }
+        
         .clappr-core-media-control-panel .clappr-core-media-control-button {
             background: transparent;
             border: none;
-            color: #fff;
+            color: #f0f0f0;
             transition: all 0.2s ease;
+            font-size: 20px;
+            cursor: pointer;
         }
         .clappr-core-media-control-panel .clappr-core-media-control-button:hover {
-            color: #00bfff;
+            color: #ff9800; /* Amber-like orange for hover */
+            transform: scale(1.1);
         }
+        
         .clappr-core-media-control-panel .clappr-core-media-control-seek-bar-container {
-            height: 8px;
+            height: 5px;
             margin: 0 10px;
+            cursor: pointer;
+            border-radius: 2.5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            position: relative;
         }
-        .clappr-core-media-control-panel .clappr-core-media-control-seek-bar-background {
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 4px;
-        }
+        
         .clappr-core-media-control-panel .clappr-core-media-control-seek-bar-fill {
-            background-color: #00bfff;
-            border-radius: 4px;
+            background-color: #ff9800;
+            border-radius: 2.5px;
+            transition: width 0.1s linear;
         }
-        .clappr-core-media-control-panel .clappr-core-media-control-volume-bar-background {
-            background-color: rgba(255, 255, 255, 0.3);
-            border-radius: 4px;
+
+        .clappr-core-media-control-panel .clappr-core-media-control-volume-bar-container {
+            height: 5px;
+            cursor: pointer;
+            border-radius: 2.5px;
+            background-color: rgba(255, 255, 255, 0.2);
         }
+        
         .clappr-core-media-control-panel .clappr-core-media-control-volume-bar-fill {
-            background-color: #00bfff;
-            border-radius: 4px;
+            background-color: #ff9800;
+            border-radius: 2.5px;
+            transition: width 0.1s linear;
         }
+
+        /* Added for the new look */
+        .clappr-core-media-control-panel .clappr-core-media-control-button:hover svg {
+             fill: #ff9800;
+        }
+
+        .clappr-core-media-control-panel .clappr-core-media-control-time-container {
+            font-size: 14px;
+            color: #ddd;
+        }
+
     </style>
 </head>
 <body>
@@ -123,8 +154,5 @@
             });
         };
     </script>
-    <span style='position:absolute;bottom:10px;right:20px;font-size: 15px; font-weight: bold;color: #3b82f6;'>
-        <em>แฟมิลี่ทีวี</em>
-    </span>
 </body>
 </html>
