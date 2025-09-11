@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>WANDERING OLDMAN AIS</title>
@@ -21,6 +22,7 @@
             font-family: Arial, sans-serif;
         }
         #player {
+            /* The player container itself */
             border-radius: 1rem;
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
             width: 100vw;
@@ -33,15 +35,17 @@
         }
         
         .clappr-core-media-control-panel {
+            /* Main control panel styles from the reference image */
             background-color: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px); /* For Safari support */
             border-top: none;
-            height: 50px;
+            height: 60px; /* Increased height for better visibility */
             transition: all 0.3s ease;
         }
 
         .clappr-core-media-control-panel:hover {
-            height: 60px;
+            height: 65px; /* Subtle size increase on hover */
         }
         
         .clappr-core-media-control-panel .clappr-core-media-control-button {
@@ -85,7 +89,7 @@
             transition: width 0.1s linear;
         }
 
-        /* Added for the new look */
+        /* Styles for button icons */
         .clappr-core-media-control-panel .clappr-core-media-control-button:hover svg {
              fill: #ff9800;
         }
