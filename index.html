@@ -15,10 +15,54 @@
     <style>
         body {
             background-color: #000000;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
         }
         #player {
             border-radius: 1rem;
             box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+            width: 100vw;
+            height: 100vh;
+        }
+        
+        /* Custom Clappr Skin Styles */
+        .clappr-player-skin {
+            color: #fff;
+        }
+        .clappr-core-media-control-panel {
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border-top: none;
+        }
+        .clappr-core-media-control-panel .clappr-core-media-control-button {
+            background: transparent;
+            border: none;
+            color: #fff;
+            transition: all 0.2s ease;
+        }
+        .clappr-core-media-control-panel .clappr-core-media-control-button:hover {
+            color: #00bfff;
+        }
+        .clappr-core-media-control-panel .clappr-core-media-control-seek-bar-container {
+            height: 8px;
+            margin: 0 10px;
+        }
+        .clappr-core-media-control-panel .clappr-core-media-control-seek-bar-background {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+        .clappr-core-media-control-panel .clappr-core-media-control-seek-bar-fill {
+            background-color: #00bfff;
+            border-radius: 4px;
+        }
+        .clappr-core-media-control-panel .clappr-core-media-control-volume-bar-background {
+            background-color: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+        .clappr-core-media-control-panel .clappr-core-media-control-volume-bar-fill {
+            background-color: #00bfff;
+            border-radius: 4px;
         }
     </style>
 </head>
