@@ -1,81 +1,76 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <title>WANDERING OLDMAN AIS</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no">
-  <link rel="stylesheet" type="text/css" href="/clap.css">
+  <meta charset="UTF-8">
+  <title>PLAYIDTV MPD PLAYER</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Clappr Core -->
-  <script src="//cdn.jsdelivr.net/npm/@clappr/player@0.4.0/dist/clappr.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/mux.js@5.6.7/dist/mux.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/level-selector@latest/dist/level-selector.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/clappr-chromecast-plugin@latest/dist/clappr-chromecast-plugin.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/clappr-pip@latest/dist/clappr-pip.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/clappr-playback-rate-plugin@latest/dist/clappr-playback-rate-plugin.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/shaka-player@2.5.10/dist/shaka-player.compiled.min.js"></script>
-  <script src="//cdn.jsdelivr.net/gh/clappr/dash-shaka-playback@latest/dist/dash-shaka-playback.external.min.js"></script>
-  <script src="//cdn.jsdelivr.net/npm/cdnbye-shaka@latest"></script>
+  <!-- ใส่ไฟล์สกิน CSS -->
+  <link rel="stylesheet" href="myskin.css">
 
   <style>
-    body { background-color: #000; margin: 0; }
-    /* ปรับแต่งแผงควบคุมใหม่ */
-    .media-control {
-      background: rgba(0, 0, 0, 0.7) !important;
-      height: 50px !important;
+    body {
+      margin: 0;
+      background: black;
     }
-    .media-control .media-control-layer {
-      align-items: center !important;
-    }
-    .media-control-button {
-      font-size: 20px !important;
-      color: #fff !important;
-    }
-    .media-control .media-control-left-panel,
-    .media-control .media-control-right-panel {
-      flex: unset !important;
-    }
-    .media-control .media-control-center-panel {
-      flex: 1 !important;
-      text-align: center !important;
-    }
-    /* สีปุ่มเมื่อ hover */
-    .media-control-button:hover {
-      color: #ff0 !important;
+    #jwplayerDiv {
+      width: 100%;
+      height: 100vh;
     }
   </style>
 </head>
-
 <body>
-  <div id="player"></div>
-  <script>
-    var player = new Clappr.Player({
-      source: 'https://cco-streamer1.cdn.3bbtv.com:8443/3bb/live/5/5.mpd',
-      mimeType: 'application/dash+xml',
-      height: '100%',
-      width: '100%',
-      autoPlay: true,
-      plugins: [LevelSelector, DashShakaPlayback, Clappr.MediaControl],
-      events: {
-        onReady: function () {
-          var plugin = this.getPlugin('click_to_pause');
-          plugin && plugin.disable();
-        },
+  <div id="jwplayerDiv"></div>
+
+  <!-- JWPlayer -->
+  <script src="//content.jwplatform.com/libraries/SAHhwvZq.js"></script>
+  <script type="text/javascript">
+    var config = {
+      "file": "https://cco-streamer1.cdn.3bbtv.com:8443/3bb/live/36/36.mpd",
+      "drm": {
+        "clearkey": {
+          "keyId": "0aeffa7753674e77b99443fac7757b8a",
+          "key": "b8c8a462008a40aa91823e0b02e8dd31"
+        }
+      }
+    };
+
+    jwplayer("jwplayerDiv").setup({
+      file: config.file,
+      type: "dash",
+      autostart: true,
+      width: "100%",
+      aspectratio: "16:9",
+      drm: {
+        clearkey: {
+          keyId: config.drm.clearkey.keyId,
+          key: config.drm.clearkey.key
+        }
       },
-      chromecast: { preload: 'metadata', contentType: 'video/mpd' },
-      shakaConfiguration: {
-        drm: {
-          clearKeys: {
-            '87db4361f7894655a4656e9c8b935a02': 'b025a4b950df41158a87cfc8d6f2ac34'
-          }
+      skin: {
+        name: "myskin",  // ใช้สกินที่เราสร้างเอง
+        controlbar: {
+          background: "rgba(0,0,0,0.6)", // พื้นหลังโปร่ง
+          icons: "#FFFFFF",
+          iconsActive: "#00ffcc",
+          text: "#FFFFFF"
         },
-      },
-      parentId: '#player'
+        menus: {
+          background: "#222",
+          text: "#ccc",
+          textActive: "#fff"
+        },
+        timeslider: {
+          progress: "#00ffcc",
+          rail: "rgba(255,255,255,0.3)"
+        },
+        tooltips: {
+          background: "#000",
+          text: "#fff"
+        }
+      }
     });
   </script>
-
-  <!-- ข้อความ -->
-  <span style="position:absolute;bottom:10px;right:20px;font-size: 15px;font-weight:bold;color:#ff0;">
-    <em>ผู้เฒ่าพเนจร</em>
-  </span>
-  <center><p><ins>ผู้เฒ่าพเนจร</ins></p></center>
 </body>
 </html>
