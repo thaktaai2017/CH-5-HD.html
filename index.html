@@ -26,7 +26,7 @@
     /* สีของปุ่มควบคุม */
     .jwplayer.jw-skin-custom .jw-button-color {
       color: #fff !important;
-      font-size: 22px;   /* ขยายปุ่มเล็กน้อย */
+      font-size: 22px;
     }
 
     /* ปุ่มเมื่อ hover */
@@ -60,7 +60,7 @@
       height: 70px;
     }
 
-    /* ซ่อนปุ่ม cast ถ้าไม่ใช้ */
+    /* ซ่อนปุ่ม cast */
     .jwplayer.jw-skin-custom .jw-icon-cast {
       display: none !important;
     }
@@ -72,30 +72,14 @@
   <!-- JWPlayer -->
   <script src="//content.jwplatform.com/libraries/SAHhwvZq.js"></script>
   <script>
-    var config = {
-      "file": "https://cco-streamer1.cdn.3bbtv.com:8443/3bb/live/36/36.mpd",
-      "drm": {
-        "clearkey": {
-          "keyId": "0aeffa7753674e77b99443fac7757b8a",
-          "key": "b8c8a462008a40aa91823e0b02e8dd31"
-        }
-      }
-    };
-
     jwplayer("jwplayerDiv").setup({
-      file: config.file,
-      type: "dash",
+      file: "https://lb1-live-mv.v2h-cdn.com/hls/ffbd/boomanime/boomanime.m3u8",  // 🔗 ลิงก์ใหม่ HLS
+      type: "hls",
       autostart: true,
       width: "100%",
       aspectratio: "16:9",
-      drm: {
-        clearkey: {
-          keyId: config.drm.clearkey.keyId,
-          key: config.drm.clearkey.key
-        }
-      },
       skin: {
-        name: "custom"   // ใช้ skin ชื่อ custom (จาก CSS ด้านบน)
+        name: "custom"
       }
     });
   </script>
