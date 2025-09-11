@@ -2,12 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>PLAYIDTV MPD PLAYER</title>
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>JWPlayer Custom Skin</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- ใส่ไฟล์สกิน CSS -->
-  <link rel="stylesheet" href="myskin.css">
 
   <style>
     body {
@@ -18,6 +14,56 @@
       width: 100%;
       height: 100vh;
     }
+
+    /* ====================== CUSTOM SKIN ====================== */
+
+    /* พื้นหลัง Control Bar */
+    .jwplayer.jw-skin-custom .jw-controlbar {
+      background-color: #555 !important;   /* เทาเข้ม */
+      height: 45px;
+    }
+
+    /* สีของปุ่มควบคุม */
+    .jwplayer.jw-skin-custom .jw-button-color {
+      color: #fff !important;
+      font-size: 22px;   /* ขยายปุ่มเล็กน้อย */
+    }
+
+    /* ปุ่มเมื่อ hover */
+    .jwplayer.jw-skin-custom .jw-button-color:hover {
+      color: #00ffcc !important;
+    }
+
+    /* ปรับตัวเลขเวลา */
+    .jwplayer.jw-skin-custom .jw-text-elapsed,
+    .jwplayer.jw-skin-custom .jw-text-duration {
+      color: #fff !important;
+      font-size: 14px;
+    }
+
+    /* แถบเวลา */
+    .jwplayer.jw-skin-custom .jw-slider-time .jw-rail {
+      background: rgba(255,255,255,0.2) !important;
+    }
+    .jwplayer.jw-skin-custom .jw-slider-time .jw-buffer {
+      background: rgba(255,255,255,0.4) !important;
+    }
+    .jwplayer.jw-skin-custom .jw-slider-time .jw-progress {
+      background: #00ffcc !important;
+    }
+
+    /* ปุ่ม Play/Pause ตรงกลาง */
+    .jwplayer.jw-skin-custom .jw-display-icon-container {
+      background: rgba(0,0,0,0.6) !important;
+      border-radius: 50%;
+      width: 70px;
+      height: 70px;
+    }
+
+    /* ซ่อนปุ่ม cast ถ้าไม่ใช้ */
+    .jwplayer.jw-skin-custom .jw-icon-cast {
+      display: none !important;
+    }
   </style>
 </head>
 <body>
@@ -25,7 +71,7 @@
 
   <!-- JWPlayer -->
   <script src="//content.jwplatform.com/libraries/SAHhwvZq.js"></script>
-  <script type="text/javascript">
+  <script>
     var config = {
       "file": "https://cco-streamer1.cdn.3bbtv.com:8443/3bb/live/36/36.mpd",
       "drm": {
@@ -49,26 +95,7 @@
         }
       },
       skin: {
-        name: "myskin",  // ใช้สกินที่เราสร้างเอง
-        controlbar: {
-          background: "rgba(0,0,0,0.6)", // พื้นหลังโปร่ง
-          icons: "#FFFFFF",
-          iconsActive: "#00ffcc",
-          text: "#FFFFFF"
-        },
-        menus: {
-          background: "#222",
-          text: "#ccc",
-          textActive: "#fff"
-        },
-        timeslider: {
-          progress: "#00ffcc",
-          rail: "rgba(255,255,255,0.3)"
-        },
-        tooltips: {
-          background: "#000",
-          text: "#fff"
-        }
+        name: "custom"   // ใช้ skin ชื่อ custom (จาก CSS ด้านบน)
       }
     });
   </script>
